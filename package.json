@@ -1,6 +1,6 @@
 {
   "name": "shellmigration",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Migrations for shell scripts.",
   "bin": {
     "shellmigration": "index.js"
