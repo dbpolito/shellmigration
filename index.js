@@ -1,44 +1,60 @@
-function array_diff(a1, a2)
-{
-    var a = [], diff = [];
+var program = require('commander'),
+    colors = require('colors'),
+    migrate = require('./migrate');
 
-    for (var i=0;i<a1.length;i++) {
-        a[a1[i]]=true;
-    }
+program.version('0.1.0');
 
-    for (var i=0;i<a2.length;i++) {
-        if(a[a2[i]]) {
-            delete a[a2[i]];
+program
+    .command('help')
+    .description('help')
+    .action(function(cmd){
+        program.help();
+    });
+
+program
+    .command('init')
+    .description('initialize project configuration')
+    .action(function(cmd){
+        migrate.init();
+    });
+
+program
+    .command('migrate')
+    .description('migrate')
+    .action(function(){
+        migrate.run();
+    });
+
+program
+    .command('list')
+    .option('--all', 'Show all migrations. (Default)')
+    .option('--done', 'Show all migrations ran.')
+    .option('--do', 'Show all migrations to be ran.')
+    .description('list')
+    .action(function(cmd){
+        var message = '',
+            migrations = [];
+
+        if (cmd.done) {
+            message = 'All migrations:\n'
+            migrations = migrate.getMigrated();
+        } else if (cmd.do) {
+            message = 'All migrations ran:\n'
+            migrations = migrate.getMigrations();
         } else {
-            a[a2[i]]=true;
+            message = 'All migrations to be ran:\n'
+            migrations = migrate.getAllMigrations();
         }
-    }
 
-    for(var k in a) {
-        diff.push(k);
-    }
+        console.log(message);
 
-    return diff;
-}
+        for (x in migrations) {
+            var file = migrations[x];
 
-var fs = require('fs'),
-    execSync = require('child_process').execSync,
-    currentPath = fs.realpathSync('.'),
-    migrationsPath = currentPath + '/migrations',
-    migrations = fs.readdirSync(migrationsPath).filter(function(file) {
-        return file.indexOf('.sh') !== -1;
-    }),
-    migrated = fs.readFileSync(migrationsPath + '/.migrated', 'utf8').split("\n").filter(function(file) {
-        file = file.trim();
-        return file !== '' && fs.existsSync(migrationsPath + '/' + file)
-    }),
-    migrate = array_diff(migrations, migrated);
+            console.log(file)
+        }
+    });
 
-for (x in migrate) {
-    var file = migrate[x];
-    console.log('Running migration:', file, execSync('sh ' + file, {
-        cwd: migrationsPath,
-        encoding: 'utf8',
-    }));
-    fs.appendFileSync(migrationsPath + '/.migrated', file + "\n")
-}
+program.parse(process.argv);
+
+if (!program.args.length) program.help();
