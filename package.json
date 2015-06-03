@@ -2,7 +2,9 @@
   "name": "shellmigration",
   "version": "0.1.0",
   "description": "Migrations for shell scripts.",
-  "main": "index.js",
+  "bin": {
+    "shellmigration": "index.js"
+  },
   "dependencies": {
     "colors": "^1.1.0",
     "commander": "^2.8.1"
