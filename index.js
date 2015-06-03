@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 var program = require('commander'),
     colors = require('colors'),
     migrate = require('./migrate');
