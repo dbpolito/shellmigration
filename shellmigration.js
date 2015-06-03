@@ -6,7 +6,7 @@ module.exports = function migrate(dir, alias) {
                 colors = require('colors'),
                 migrate = require('./migrate');
 
-            program.version('0.1.0');
+            program.version('0.1.3');
 
             program
                 .command('help')
