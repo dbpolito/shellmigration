@@ -51,11 +51,13 @@ module.exports = function migrate(dir, alias) {
         },
 
         init: function() {
-            fs.mkdirSync('./migrations');
+            var path = fs.realpathSync(__dirname);
 
-            fs.createReadStream('./stubs/shellmigration.json').pipe(fs.createWriteStream('./shellmigration.json'));
-            fs.createReadStream('./stubs/gitignore').pipe(fs.createWriteStream('./migrations/.gitignore'));
-            fs.createReadStream('./stubs/migrated').pipe(fs.createWriteStream('./migrations/.migrated'));
+            fs.mkdirSync(currentPath + '/migrations');
+
+            fs.createReadStream(path + '/stubs/shellmigration.json').pipe(fs.createWriteStream('./shellmigration.json'));
+            fs.createReadStream(path + '/stubs/gitignore').pipe(fs.createWriteStream(currentPath + '/migrations/.gitignore'));
+            fs.createReadStream(path + '/stubs/migrated').pipe(fs.createWriteStream(currentPath + '/migrations/.migrated'));
         },
 
         run: function() {
