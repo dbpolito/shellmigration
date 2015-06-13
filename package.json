@@ -1,21 +1,25 @@
 {
-  "name": "shellmigration",
-  "version": "0.1.3",
+  "name": "shemi",
+  "version": "0.2.0",
   "description": "Migrations for shell scripts.",
   "bin": {
-    "shellmigration": "index.js"
+    "shemi": "bin/shemi.js"
   },
   "dependencies": {
     "colors": "^1.1.0",
     "commander": "^2.8.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "watchify": "^3.2.2"
+  },
   "scripts": {
+    "dev": "coffee -o dist/ -c src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbpolito/shellmigration.git"
+    "url": "git+https://github.com/dbpolito/shemi.git"
   },
   "keywords": [
     "migration",
@@ -25,7 +29,7 @@
   "author": "Daniel Polito <contato@dbpolito.net> (http://dbpolito.net)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dbpolito/shellmigration/issues"
+    "url": "https://github.com/dbpolito/shemi/issues"
   },
-  "homepage": "https://github.com/dbpolito/shellmigration#readme"
+  "homepage": "https://github.com/dbpolito/shemi#readme"
 }
