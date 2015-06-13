@@ -10,8 +10,7 @@
     "commander": "^2.8.1"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.3",
-    "watchify": "^3.2.2"
+    "coffee-script": "^1.9.3"
   },
   "scripts": {
     "dev": "coffee -o dist/ -c src/",
