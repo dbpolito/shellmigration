@@ -31,12 +31,10 @@ class Shemi
             .option '--do', 'Show all migrations to be ran.'
             .description 'list'
             .action (cmd) ->
-                if cmd.done
-                    type = 'done'
-                else if cmd.do
-                    type = 'do'
-                else
-                    type = 'all'
+                type = switch
+                    when cmd.done then 'done'
+                    when cmd.do then 'do'
+                    else 'all'
 
                 migrate.list type
 

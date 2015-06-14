@@ -22,13 +22,16 @@
       });
       program.command('list').option('--all', 'Show all migrations. (Default)').option('--done', 'Show all migrations ran.').option('--do', 'Show all migrations to be ran.').description('list').action(function(cmd) {
         var type;
-        if (cmd.done) {
-          type = 'done';
-        } else if (cmd["do"]) {
-          type = 'do';
-        } else {
-          type = 'all';
-        }
+        type = (function() {
+          switch (false) {
+            case !cmd.done:
+              return 'done';
+            case !cmd["do"]:
+              return 'do';
+            default:
+              return 'all';
+          }
+        })();
         return migrate.list(type);
       });
       program.parse(process.argv);

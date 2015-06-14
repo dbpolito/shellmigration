@@ -14,4 +14,4 @@ module.exports = ((dir, alias) ->
         for k of a
             diff.push k
         diff
-)
+)()
