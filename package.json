@@ -10,7 +10,8 @@
     "commander": "^2.8.1"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.3"
+    "coffee-script": "^1.9.3",
+    "debug": "^2.2.0"
   },
   "scripts": {
     "dev": "coffee -o dist/ -c src/",

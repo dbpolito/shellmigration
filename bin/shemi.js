@@ -1,4 +1,3 @@
 #! /usr/bin/env node
-var shellmigration = require('./dist/shemi')
-
-shellmigration.run()
+var shemi = require('../dist/shemi')
+shemi.run()
