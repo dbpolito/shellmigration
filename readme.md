@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/dbpolito/shellmigration.png?label=ready&title=Ready)](https://waffle.io/dbpolito/shellmigration)
 ## shellmigration
 
 Manage environments are hard, every time you need to add a new dependency, install something here, change something there, right?
